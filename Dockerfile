@@ -35,6 +35,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Cambiar el propietario y el grupo del directorio "/var/www" al usuario y grupo "www-data"
+
+RUN chown www-data:www-data /var/www
+
 # Add user for laravel application
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
